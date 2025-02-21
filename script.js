@@ -218,16 +218,16 @@ function revealUnselectedWords() {
 
 // Function to initialize canvases and bind events
 function initializeCanvases() {
-    console.log("DOM body:", document.body.innerHTML);
+    // console.log("DOM body:", document.body.innerHTML);
 
     if (!document.getElementById("c")) {
-        console.log("Adding canvas #c");
+        // console.log("Adding canvas #c");
         var canvasC = document.createElement("canvas");
         canvasC.id = "c";
         document.querySelector(".letters").appendChild(canvasC);
     }
     if (!document.getElementById("a")) {
-        console.log("Adding canvas #a");
+        // console.log("Adding canvas #a");
         var canvasA = document.createElement("canvas");
         canvasA.id = "a";
         document.querySelector(".letters").appendChild(canvasA);
@@ -251,7 +251,7 @@ function initializeCanvases() {
         return;
     }
 
-    console.log("Canvases initialized successfully");
+    // console.log("Canvases initialized successfully");
 
     $("#c").on("mousedown mouseup mousemove mouseleave", function(e) {
         e.preventDefault();
@@ -261,7 +261,7 @@ function initializeCanvases() {
             sX = e.offsetX || e.clientX - $(e.target).offset().left;
             sY = e.offsetY || e.clientY - $(e.target).offset().top;
             setPos(sX, sY, "start");
-            console.log(`Mouse down: sX=${sX}, sY=${sY}, startPos=${click.startPos}`);
+            // console.log(`Mouse down: sX=${sX}, sY=${sY}, startPos=${click.startPos}`);
             draw(e.type);
         } else if (e.type === "mousemove") {
             if (isMouseDown) {
@@ -278,7 +278,7 @@ function initializeCanvases() {
                 eX = e.offsetX || e.clientX - $(e.target).offset().left;
                 eY = e.offsetY || e.clientY - $(e.target).offset().top;
                 setPos(eX, eY, "end");
-                console.log(`Mouse up: eX=${eX}, eY=${eY}, endPos=${click.endPos}`);
+                // console.log(`Mouse up: eX=${eX}, eY=${eY}, endPos=${click.endPos}`);
                 draw(e.type);
                 ctx.clearRect(0, 0, width, height);
                 if (checkWord()) {
@@ -315,7 +315,7 @@ function initializeCanvases() {
 }
 
 $(document).ready(function() {
-    console.log("jQuery ready triggered");
+    // console.log("jQuery ready triggered");
     initializeGame();
     initializeCanvases();
     startTimer();
@@ -402,7 +402,7 @@ function draw(f, isReveal = false) {
         var snappedX = Math.floor(xArc / cellSize) * cellSize + cellSize / 2;
         var snappedY = Math.floor(yArc / cellSize) * cellSize + cellSize / 2;
         ctx.arc(snappedX, snappedY, r, num1 * Math.PI, num2 * Math.PI);
-        console.log(`Drawing arc at: x=${snappedX}, y=${snappedY}`);
+        // console.log(`Drawing arc at: x=${snappedX}, y=${snappedY}`);
         ctx.strokeStyle = strokeColor;
         ctx.stroke();
     }
@@ -413,7 +413,7 @@ function draw(f, isReveal = false) {
         ctx.lineTo(lX1, lY1);
         ctx.moveTo(mX2, mY2);
         ctx.lineTo(lX2, lY2);
-        console.log(`Drawing lines from (${mX1}, ${mY1}) to (${lX1}, ${lY1}) and (${mX2}, ${mY2}) to (${lX2}, ${lY2})`);
+        // console.log(`Drawing lines from (${mX1}, ${mY1}) to (${lX1}, ${lY1}) and (${mX2}, ${mY2}) to (${lX2}, ${lY2})`);
         ctx.stroke();
     }
 
@@ -521,14 +521,14 @@ function checkWord() {
             var currentPos = selectedStart;
             var steps = Math.abs((selectedEnd - selectedStart) / step) + 1;
 
-            console.log(`Checking ${word}: start=${selectedStart}, end=${selectedEnd}, steps=${steps}`);
+            // console.log(`Checking ${word}: start=${selectedStart}, end=${selectedEnd}, steps=${steps}`);
             for (var j = 0; j < steps; j++) {
                 var letter = $(".letters").find("." + currentPos).text();
                 selectedLetters += letter;
-                console.log(`Pos ${currentPos}: ${letter}`);
+                // console.log(`Pos ${currentPos}: ${letter}`);
                 if (j < steps - 1) currentPos += step;
             }
-            console.log(`Selected: ${selectedLetters}, Expected: ${word}`);
+            // console.log(`Selected: ${selectedLetters}, Expected: ${word}`);
 
             if (selectedLetters === word && clearPos(pos[i])) {
                 var positions = words[i].positions;
