@@ -1,0 +1,413 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    font-family: 'Fresca', sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 10px;
+    position: relative;
+}
+
+#crafted-by {
+    position: absolute;
+    top: 10px;
+    /* margin-bottom: 20px; */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2em;
+    color: #1e40af;
+    font-family: cursive;
+}
+
+#main {
+    margin-top: 5px;
+    max-width: 1400px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.scoreboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+}
+
+.scoreboard-container h2 {
+    font-size: 1.8em;
+    color: #1e40af;
+    margin-bottom: 10px;
+    font-family: 'Happy Monkey', cursive;
+}
+
+.scoreboard {
+    width: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.scoreboard h3 {
+    font-size: 1.5em;
+    color: #1e40af;
+    margin-bottom: 10px;
+}
+
+.scoreboard p {
+    font-size: 1.2em;
+    color: #333;
+    margin: 5px 0;
+}
+
+#reveal-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(90deg, #3b82f6, #60a5fa);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Happy Monkey', cursive;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+#reveal-btn:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+}
+
+#reveal-btn:active {
+    transform: translateY(0);
+}
+
+.game-container {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.left {
+    width: 820px;
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    position: relative;
+}
+
+.letters {
+    position: relative;
+    width: 800px;
+    max-width: 100%;
+    height: 800px;
+    max-height: 100%;
+    background: #f9fafb;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+}
+
+/* .letters span {
+    display: inline-block;
+    width: calc(100% / 20); 
+    height: calc(100% / 20); 
+    line-height: calc(100% / 20);
+    text-align: center;
+    font-size: clamp(0.8em, 2vw, 1.2em);
+    color: #333;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    
+    
+} */
+
+/* .letters span {
+    display: flex; 
+    width: calc(100% / 20);
+    height: calc(100% / 20);
+    text-align: center;
+    font-size: clamp(0.8em, 2vw, 1.2em);
+    color: #333;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    align-items: center; 
+    justify-content: center; 
+    line-height: 1; 
+    margin: 0; 
+    padding: 0; 
+} */
+
+.letters span {
+    display: inline-block;
+    width: calc(100% / 20); /* 20 columns */
+    height: calc(100% / 20); /* 20 rows */
+    text-align: center; /* Horizontal center */
+    align-items: center;
+    justify-content: center;
+    /* line-height: calc(100% / 20);  */
+    line-height: 2;
+    font-size: clamp(0.8em, 2vw, 1.2em);
+    color: #333;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    box-sizing: border-box; /* Ensure padding and border are included in width/height */
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.correct-word {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.revealed-word {
+    background: #fef08a;
+    color: #854d0e;
+    font-weight: bold;
+}
+
+#c, #a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+#c { z-index: 2; }
+#a { z-index: 1; }
+
+.right {
+    /* width: 100%; */
+    max-width: 220px;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 5px;
+}
+
+.words {
+    font-size: 1em;
+    color: #333;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.words span {
+    display: inline-block;
+    padding: 8px 8px;
+    /* margin: 5px; */
+    background: #f1f5f9;
+    border-radius: 5px;
+    text-align: center;
+    transition: background 0.3s ease, color 0.3s ease;
+    font-size: clamp(0.9em, 2vw, 1.2em);
+    min-width: 100px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.words span.strike {
+    text-decoration: line-through;
+    background: #d1fae5;
+    color: #16a34a;
+}
+
+.info-box {
+    width: 300px;
+    max-width: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    padding: 15px;
+}
+
+.info-box h3 {
+    font-size: 1.5em;
+    color: #1e40af;
+    margin-bottom: 10px;
+}
+
+.info-box ul {
+    list-style: disc;
+    padding-left: 20px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.info-box ul ul {
+    list-style: circle;
+    padding-left: 20px;
+    font-size: 0.95em;
+}
+
+@media (max-width: 1200px) {
+    #main {
+        flex-direction: column;
+        align-items: center;
+    }
+    .scoreboard-container, .info-box {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 20px;
+    }
+    .game-container {
+        width: 100%;
+    }
+    .left {
+        width: 100%;
+    }
+    .right {
+        margin-top: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    #crafted-by {
+        font-size: 1em;
+    }
+    .scoreboard-container h2 {
+        font-size: 1.5em;
+    }
+    .scoreboard p {
+        font-size: 1em;
+    }
+    .words span {
+        min-width: 80px;
+        padding: 6px 10px;
+    }
+    .info-box ul {
+        font-size: 1em;
+    }
+}
+
+
+.timer {
+    font-size: 2em; /* Larger font size */
+    font-family: 'Happy Monkey', cursive; /* Fun and playful font */
+    color: #1e40af; /* Blue color to match the theme */
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3); /* Light blue gradient */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: 2px solid #3b82f6; /* Border to make it pop */
+    display: inline-block; /* Fit content width */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Smooth hover effect */
+}
+
+.timer:hover {
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+}
+
+/* Optional: Add a glowing effect for emphasis */
+.timer::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5); /* Blue glow */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.timer:hover::after {
+    opacity: 1; /* Show glow on hover */
+}
+
+
+/* Rules & Info Section */
+.info-box {
+  width: 300px;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 15px;
+  position: relative;
+  margin-top: 20px;
+}
+
+.rules-heading {
+  font-size: 1.5em;
+  color: #1e40af;
+  margin-bottom: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rules-icon {
+  font-size: 1.2em;
+  color: #3b82f6;
+  background: #e0eafc;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.rules-heading:hover .rules-icon {
+  background: #3b82f6;
+  color: #ffffff;
+}
+
+.rules-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease;
+  opacity: 0;
+}
+
+.info-box:hover .rules-content {
+  max-height: 500px; /* Adjust based on content height */
+  opacity: 1;
+}
+
+.info-box ul {
+  list-style: disc;
+  padding-left: 20px;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.info-box ul ul {
+  list-style: circle;
+  padding-left: 20px;
+  font-size: 0.95em;
+}

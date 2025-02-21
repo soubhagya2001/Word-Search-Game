@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Word Search!</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Fresca"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://fonts.googleapis.com/css?family=Happy+Monkey"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="crafted-by">Crafted by Soubhagya</div>
+    <div id="main">
+      <div class="scoreboard-container">
+        <div class="timer">00:00:00</div>
+        <h2>Word Search Puzzle</h2>
+        <div class="scoreboard">
+          <h3>Score</h3>
+          <p>Selected: <span id="selected-count">0</span></p>
+          <p>Revealed: <span id="revealed-count">0</span></p>
+          <p>Remaining: <span id="remaining-count">0</span></p>
+        </div>
+        <button id="reveal-btn">Reveal Positions</button>
+
+        <!-- Rules & Info Section -->
+        <div class="info-box">
+          <h3 class="rules-heading">
+            Rules & Info
+            <span class="rules-icon">?</span>
+          </h3>
+          <div class="rules-content">
+            <ul>
+              <li>Find and select all words listed below.</li>
+              <li>Click and drag over the grid to select a word.</li>
+              <li>Selected words turn green and are struck through.</li>
+              <li>
+                Click "Reveal Unselected Words" to highlight remaining words in
+                yellow.
+              </li>
+              <li>
+                Words can be in these directions:
+                <ul>
+                  <li>N (North: Up)</li>
+                  <li>S (South: Down)</li>
+                  <li>E (East: Right)</li>
+                  <li>W (West: Left)</li>
+                  <li>NE (Northeast: Up-Right)</li>
+                  <li>NW (Northwest: Up-Left)</li>
+                  <li>SE (Southeast: Down-Right)</li>
+                  <li>SW (Southwest: Down-Left)</li>
+                </ul>
+              </li>
+              <li>Score updates with each correct selection or reveal.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="game-container">
+        <div class="left">
+          <div class="letters">
+            <canvas id="a" width="800" height="800"></canvas>
+            <canvas id="c" width="800" height="800"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="right">
+        <div class="words"></div>
+      </div>
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>
