@@ -1,6 +1,6 @@
 # Word Search Puzzle
 
-A fun and interactive word search puzzle game built with HTML, CSS, and JavaScript. Find hidden words in a grid of letters and test your vocabulary skills!
+A fun and interactive word search puzzle game built with HTML, CSS, and JavaScript. Find hidden words in a grid of letters and test your vocabulary skills! ![Click here to play](https://soubhagya2001.github.io/Word-Search-Game/)
 
 ![Word Search Puzzle Screenshot](./screenshot.png)
 
